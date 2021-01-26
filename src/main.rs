@@ -1,13 +1,18 @@
 #![deny(warnings)]
 
 use warp::Filter;
+use std::env;
+
+fn get_server_port() -> u16 {
+    env::var("PORT").ok().and_then(|p| p.parse().ok()).unwrap_or(8080)
+}
 
 #[tokio::main]
 async fn main() {
     let api = filters::events();
     let routes = api.with(warp::log("Events"));
 
-    warp::serve(routes).run(([0,0,0,0], 8080)).await;
+    warp::serve(routes).run(([0,0,0,0], get_server_port())).await;
 }
 
 mod filters {
