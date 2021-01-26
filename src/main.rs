@@ -7,7 +7,7 @@ async fn main() {
     let api = filters::events();
     let routes = api.with(warp::log("Events"));
 
-    warp::serve(routes).run(([0,0,0,0], 80)).await;
+    warp::serve(routes).run(([0,0,0,0], 8080)).await;
 }
 
 mod filters {
