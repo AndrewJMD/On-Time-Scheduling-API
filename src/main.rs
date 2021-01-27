@@ -10,9 +10,11 @@ fn get_server_port() -> u16 {
 #[tokio::main]
 async fn main() {
     let api = filters::events();
-    let routes = api.with(warp::log("Events"));
+    let _routes = api.with(warp::log("Events"));
+    let test = warp::path!("hello" / String)
+        .map(|name| format!("Hello, {}!", name));
 
-    warp::serve(routes).run(([0, 0, 0, 0], get_server_port())).await;
+    warp::serve(test).run(([0, 0, 0, 0], get_server_port())).await;
 }
 
 mod filters {
