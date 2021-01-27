@@ -1,1 +1,0 @@
-web: ./target/planner-database
