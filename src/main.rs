@@ -52,7 +52,9 @@ mod filters {
         let mut vec = vec![("organizer", org), ("event", evt), ("date", date)];
         let id = &nanoid!();
         vec.push(("id", &id));
-
+        
+        println!("{:?}", vec);
+        
         let mut n = 1;
 
         while con.hexists(format!("event:{}", n), "organizer").unwrap() {
